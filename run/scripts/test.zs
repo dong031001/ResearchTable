@@ -1,8 +1,11 @@
 import mods.ResearchTable;
+import ResearchTable.Category;
+import ResearchTable.Builder;
 
 // use `/researchtable @p all 0` to clear all progress
 
-var cat = ResearchTable.addCategory(<minecraft:grass>);
+var cat = ResearchTable.addCategory(<minecraft:grass>, "hello");
+var cat2 = ResearchTable.addCategory(<minecraft:stone>);
 
 ResearchTable.builder("testResearch1", cat) // The second parameter has no use currently
   .setIcons(<minecraft:grass>)
@@ -15,21 +18,21 @@ ResearchTable.builder("testResearch1", cat) // The second parameter has no use c
 //.setNoMaxCount()
   .build();
 
-ResearchTable.builder("testResearch2", cat)
-  .setTitle("Energetic Wool")
-  .setIcons(<minecraft:wool:3>)
+ResearchTable.builder("testResearch2", cat2)
+  .setTitle("Energetic Wool loooooooong")
+  .setIcons(<ore:plankWood>)
   .addCondition(<minecraft:wool:32767>, 2048, "Any Wool") // language key is better
   .addEnergyCondition(123456)
   .setMaxCount(2) // How many times can a player do this research?
   .build();
 
-ResearchTable.builder("testResearch3", cat)
+ResearchTable.builder("testResearch3", cat2)
   .setTitle("Produce Seller")
   .setIcons(<minecraft:bread>)
   .setRequiredResearches("testResearch1")
-  .setRequiredStages("stage", "stageYouWillNeverGet")
+//.setRequiredStages("stage", "stageYouWillNeverGet")
 //.setOptionalStages(2, "stage", "stage2", "stage3")
-  .setOptionalResearches(1, "testResearch1", "testResearch2", "testResearch3")
+//.setOptionalResearches(1, "testResearch1", "testResearch2", "testResearch3")
   .addCondition(<minecraft:apple> * 2147483647)
   .addCondition(<minecraft:wheat> * 2147483647)
   .addCondition(<minecraft:wheat_seeds> * 2147483647)
@@ -69,8 +72,8 @@ ResearchTable.builder("testResearch5", cat)
 ResearchTable.builder("testResearch6", cat)
   .setTitle("Click for Money")
   .setIcons(<minecraft:emerald>)
-  .setRequiredMoneyGE(10000)
-  .setTriggerMoneyGE(-9999, true)
+//  .setRequiredMoneyGE(10000)
+//  .setTriggerMoneyGE(-9999)
   .setNoMaxCount()
-  .setRewardMoneyGE(10000, true)
+//  .setRewardMoneyGE(10000)
   .build();

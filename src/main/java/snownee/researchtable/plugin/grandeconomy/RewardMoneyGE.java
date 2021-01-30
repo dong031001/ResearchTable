@@ -6,27 +6,19 @@ import net.minecraft.world.World;
 import snownee.researchtable.core.IReward;
 import the_fireplace.grandeconomy.api.GrandEconomyApi;
 
-public class RewardMoneyGE implements IReward
-{
-    private final long money;
-    private final boolean showMsg;
+public class RewardMoneyGE implements IReward {
+    private final double money;
 
-    public RewardMoneyGE(long money, boolean showMsg)
-    {
+    public RewardMoneyGE(double money) {
         this.money = money;
-        this.showMsg = showMsg;
     }
 
     @Override
-    public void earn(World world, BlockPos pos, EntityPlayer player)
-    {
-        if (money >= 0)
-        {
-            GrandEconomyApi.addToBalance(player.getUniqueID(), money, showMsg);
-        }
-        else
-        {
-            GrandEconomyApi.takeFromBalance(player.getUniqueID(), -money, showMsg);
+    public void earn(World world, BlockPos pos, EntityPlayer player) {
+        if (money >= 0) {
+            GrandEconomyApi.addToBalance(player.getUniqueID(), money, true);
+        } else {
+            GrandEconomyApi.takeFromBalance(player.getUniqueID(), -money, true);
         }
     }
 }

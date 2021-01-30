@@ -1,16 +1,13 @@
 package snownee.researchtable.core;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class ResearchCategory
-{
-    public static final ResearchCategory GENERAL = new ResearchCategory(new ItemStack(Items.DIAMOND));
+public class ResearchCategory {
+    public final ItemStack icon;
+    public final String nameKey;
 
-    private final ItemStack icon;
-
-    public ResearchCategory(ItemStack icon)
-    {
+    public ResearchCategory(ItemStack icon, String nameKey) {
         this.icon = icon;
+        this.nameKey = nameKey;
     }
 }

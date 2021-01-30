@@ -10,34 +10,29 @@ import snownee.kiwi.util.Util;
 import snownee.researchtable.ResearchTable;
 import snownee.researchtable.core.ICriterion;
 
-public class CriterionMoneyGE implements ICriterion
-{
-    private final long money;
+public class CriterionMoneyGE implements ICriterion {
+    private final double money;
 
-    public CriterionMoneyGE(long money)
-    {
+    public CriterionMoneyGE(double money) {
         this.money = money;
     }
 
     @Override
-    public boolean matches(EntityPlayer player, NBTTagCompound data)
-    {
+    public boolean matches(EntityPlayer player, NBTTagCompound data) {
         NBTHelper helper = NBTHelper.of(data);
-        long balance = helper.getLong("grandeconomy.money");
+        double balance = helper.getDouble("grandeconomy.money");
         return balance >= money;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getFailingText(EntityPlayer player, NBTTagCompound data)
-    {
+    public String getFailingText(EntityPlayer player, NBTTagCompound data) {
         NBTHelper helper = NBTHelper.of(data);
-        return I18n.format(ResearchTable.MODID + ".gui.needMoney", money(money, helper), Util.color(0xFF0000) + I18n.format(ResearchTable.MODID + ".gui.youHave", money(helper.getLong("grandeconomy.money"), helper)));
+        return I18n.format(ResearchTable.MODID + ".gui.needMoney", money(money, helper), Util.color(0xFF0000) + I18n.format(ResearchTable.MODID + ".gui.youHave", money(helper.getDouble("grandeconomy.money"), helper)));
     }
 
     @SideOnly(Side.CLIENT)
-    public String money(long amount, NBTHelper helper)
-    {
+    public String money(double amount, NBTHelper helper) {
         String key = "grandeconomy." + (amount == 1 ? "singular" : "multiple");
         return I18n.format(ResearchTable.MODID + ".gui.moneyFormat", amount, helper.getString(key, ""));
     }
